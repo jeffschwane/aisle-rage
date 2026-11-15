@@ -134,7 +134,10 @@ ol.hs li.empty{display:block;text-align:center;color:#8a7a5a;border:0}
 'use strict';
 const C=document.getElementById('c');let X=C.getContext('2d');
 X.imageSmoothingEnabled=false;
-const VW=400,VH=240,T=16,MW=52,MH=38,WW=MW*T,WH=MH*T;
+// Phones held upright get a taller 4:3 view (400x300); everything else stays 5:3 (400x240).
+const TALL=(window.matchMedia&&matchMedia('(max-width:640px)').matches&&innerHeight>innerWidth);
+const VW=400,VH=TALL?300:240,MENU_Y=(VH-240)/2,T=16,MW=52,MH=38,WW=MW*T,WH=MH*T;
+C.height=VH;X.imageSmoothingEnabled=false;
 const PF="'Press Start 2P',monospace";
 
 /* ---------- fonts ---------- */
@@ -781,8 +784,9 @@ const overlay=a=>{X.fillStyle=`rgba(14,8,24,${a})`;X.fillRect(0,0,VW,VH);};
 const blink=()=>(tick*2.5|0)%2;
 function render(){
   X.fillStyle='#000';X.fillRect(0,0,VW,VH);drawWorld();
-  if(state==='play'){drawHUD();drawTicker();if(paused){overlay(.6);ptxt('PAUSED',VW/2,96,'#ffe600',24,'center','#c0392b');ptxt('PRESS START',VW/2,136,'#fff',8,'center');}return;}
+  if(state==='play'){drawHUD();drawTicker();if(paused){overlay(.6);ptxt('PAUSED',VW/2,96+MENU_Y,'#ffe600',24,'center','#c0392b');ptxt('PRESS START',VW/2,136+MENU_Y,'#fff',8,'center');}return;}
   overlay(state==='title'?.62:.8);
+  X.save();X.translate(0,MENU_Y);
   if(state==='title'){
     ptxt('AISLE RAGE',VW/2,22,'#ffe600',32,'center','#c0392b');ptxt('AISLE RAGE',VW/2,22,'#ffe600',32,'center',null);
     ptxt('CITY POINT  -  32-BIT EDITION',VW/2,62,'#7fe0ff',8,'center');
@@ -823,6 +827,7 @@ function render(){
     ptxt('FINAL SCORE',VW/2,138,'#c9bfe0',8,'center');ptxt(pad6(score),VW/2,150,'#fff',24,'center');drawVerdict(184);
     if(blink())ptxt('PRESS START',VW/2,208,'#fff',16,'center','#c0392b');
   }
+  X.restore();
 }
 
 /* ---------- high scores, name entry, challenges ---------- */
