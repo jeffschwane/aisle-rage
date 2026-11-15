@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AISLE RAGE: City Point</title>
+<meta name="description" content="The Downtown Brooklyn Trader Joe's video game. Grab your list, dodge shoppers, catch the end of the line.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aisle Rage">
+<meta property="og:title" content="AISLE RAGE: City Point">
+<meta property="og:description" content="The Downtown Brooklyn Trader Joe's video game. Grab your list, dodge shoppers, catch the end of the line. Can you beat my score?">
+<meta property="og:url" content="https://jeffschwane.github.io/aisle-rage/">
+<meta property="og:image" content="https://jeffschwane.github.io/aisle-rage/card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Aisle Rage: City Point - pixel-art title card">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AISLE RAGE: City Point">
+<meta name="twitter:description" content="The Downtown Brooklyn Trader Joe's video game. Can you beat my score?">
+<meta name="twitter:image" content="https://jeffschwane.github.io/aisle-rage/card.png">
+<link rel="icon" href="card.png">
+<style>
+html,body{margin:0;height:100%;background:#120c1c;color:#f4ecd6;font-family:ui-monospace,Menlo,monospace;display:flex;align-items:center;justify-content:center;text-align:center}
+img{width:min(90vw,600px);image-rendering:pixelated;border-radius:8px;border:3px solid #e0a030}
+a{color:#ffe600;font-weight:bold}
+</style>
+<script>
+// Forward to the game on Claude, keeping any challenge (#beat-name-score) in the link.
+var GAME = "https://claude.ai/artifact/T5KHvWWfQSYVHv8vEzus2M";
+var h = /^#beat-[a-z0-9]{1,10}-\d{1,6}$/i.test(location.hash) ? location.hash : "";
+location.replace(GAME + h);
+</script>
+</head>
+<body>
+<div>
+  <img src="card.png" alt="Aisle Rage: City Point">
+  <p>Loading the game&hellip; <a id="go" href="https://claude.ai/artifact/T5KHvWWfQSYVHv8vEzus2M">tap here if it doesn't open</a></p>
+</div>
+<script>document.getElementById('go').href = GAME + h;</script>
+</body>
+</html>
