@@ -57,6 +57,16 @@ button{font-family:inherit;border:0;cursor:pointer;touch-action:none}
 #legend{font-size:6px;line-height:2;color:#6a5a40;margin-top:8px}
 #note{font-size:7px;line-height:1.9;color:#8a8aa3;margin-top:4px}
 @media (hover:hover) and (pointer:fine){#controls{display:none}}
+/* phones: let the game screen run edge to edge */
+@media (max-width:640px){
+  #wrap{padding:0 0 30px}
+  #bezel{border-radius:0;padding:3px 0 5px;box-shadow:0 3px 0 #1e1e26}
+  #screen{border-radius:0;border-left:0;border-right:0;border-width:1px}
+  #brand{padding:0 10px}
+  #controls{margin:14px 14px 8px}
+  .card{margin:0 10px 14px}
+  #note,#keys{padding:0 12px}
+}
 @media (pointer:coarse){#keys{display:none}}
 #ov{position:fixed;inset:0;display:none;background:rgba(10,6,18,.88);z-index:50;overflow:auto;-webkit-overflow-scrolling:touch}
 #ov.on{display:block}
